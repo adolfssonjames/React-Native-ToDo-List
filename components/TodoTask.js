@@ -1,5 +1,5 @@
-import react from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet,  } from 'react-native';
 
 
 const TodoTask = (input) => {
@@ -7,35 +7,22 @@ const TodoTask = (input) => {
 
         <View style={styles.TaskItem}>
             <View style={styles.Tasken}>
-                <TouchableOpacity style={styles.addKnapp}>
-
-                </TouchableOpacity>
+            
                 <Text style={styles.taskText}>{input.text}  </Text>
             </View>
-            <View style={styles.delKnapp}>
 
-            </View>
         </View>
     )
 }
 const styles = StyleSheet.create({
-    delKnapp: {
-        borderColor:'#333',
-        borderWidth:2,
-        borderRadius:5,
-        height:12,
-        width: 12,
-
-    },
-    addKnapp: {
-      width:24,
-      height:24,
-      backgroundColor: '#222',
-    },
+  
+   
     taskText: {
-        maxWidth:'80%',
+     
         fontSize: 17,
         paddingLeft: 8,
+        textAlign:"center",
+        flex:1,
     },
     Tasken: {
         flexDirection: "row",
@@ -51,5 +38,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+    handler: {
+        fontSize: 18,
+    }
 });
 export default TodoTask;
