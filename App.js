@@ -96,7 +96,7 @@ function Sysslor ({navigation}) {
     Keyboard.dismiss(); //tar bort skrivbordet på mobil automatiskt vid task tillägg
     setTaskItems ([...taskItems, task]) //lägger till det som redan finns i taskitem arrayen samt lägger till den nya tasken
     setTask(null); // tömmer textfältet vid task tillägg.
-
+      
     } else {
       alert('3 bokstäver minimum krävs för att sysslan ska läggas till')
     }
