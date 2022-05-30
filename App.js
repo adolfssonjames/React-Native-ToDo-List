@@ -32,11 +32,11 @@ function Sysslor ({navigation}) {
 
 
   const searchFilterFunction = (text) => {
-    // Check if searched text is not blank
+    // kollar om filter fältet inte är tom
     if (text) {
-      // Inserted text is not blank
-      // Filter the mainDataSource
-      // Update FilteredDataSource
+      // om den inte är tom
+      // Filtrera mainDataSource och uppdatera filteredDataSource
+      
       const newData = mainDataSource.filter(
         function (item) {
           const itemData = item.title
@@ -48,7 +48,7 @@ function Sysslor ({navigation}) {
       setFilteredDataSource(newData);
       setSearch(text);
     } else {
-      // Inserted text is blank
+      
       // Updaterar FilteredDataSource med mainDataSource
       setFilteredDataSource(mainDataSource);
       setSearch(text);
@@ -56,9 +56,9 @@ function Sysslor ({navigation}) {
   };
 
 
+  // FlatList Item
   const ItemView = ({item}) => {
     return (
-      // Flat List Item
       <Text
         style={styles.itemStyle}
         onPress={() => getItem(item)}>
@@ -70,22 +70,22 @@ function Sysslor ({navigation}) {
   };
 
 
+  // delar upp listans items 
   const ItemSeparatorView = () => {
     return (
-      // Flat List Item Separator
       <View
         style={{
-          height: 0.5,
+          height: 1.5,
           width: '100%',
-          backgroundColor: '#C8C8C8',
+          backgroundColor: '#f5e23d',
         }}
       />
     );
   };
 
+  //klicka på ett item funktion i filtrera listan
   const getItem = (item) => {
-    // Function for click on an item
-    alert('Id : ' + item.id + ' Title : ' + item.title);
+  alert('Id : ' + item.id + ' Title : ' + item.title);
   };
 
   
@@ -118,8 +118,7 @@ function Sysslor ({navigation}) {
           style={styles.textInputStyle}
           onChangeText={(text) => searchFilterFunction(text)}
           value={search}
-          underlineColorAndroid="transparent"
-          placeholder="Search Here"
+          placeholder="Filtrera här.."
         />
         <FlatList
           data={filteredDataSource}
@@ -127,6 +126,7 @@ function Sysslor ({navigation}) {
           ItemSeparatorComponent={ItemSeparatorView}
           renderItem={ItemView}
         />
+        
           <View style={styles.todoTaskContainer}>
             <Text style={styles.title}>
               Sysslor att göra
@@ -295,6 +295,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     flex:3,
     marginVertical: 10,
+  },
+  textInputStyle: {
+    fontSize:20,
   }
 
 
