@@ -15,7 +15,7 @@ function Sysslor ({navigation}) {
   
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
-  const [masterDataSource, setMasterDataSource] = useState([]);
+  const [mainDataSource, setMainDataSource] = useState([]);
 
   
   useEffect(() => {
@@ -23,7 +23,7 @@ function Sysslor ({navigation}) {
       .then((response) => response.json())
       .then((responseJson) => {
         setFilteredDataSource(responseJson);
-        setMasterDataSource(responseJson);
+        setMainDataSource(responseJson);
       })
       .catch((error) => {
         console.error(error);
@@ -35,9 +35,9 @@ function Sysslor ({navigation}) {
     // Check if searched text is not blank
     if (text) {
       // Inserted text is not blank
-      // Filter the masterDataSource
+      // Filter the mainDataSource
       // Update FilteredDataSource
-      const newData = masterDataSource.filter(
+      const newData = mainDataSource.filter(
         function (item) {
           const itemData = item.title
             ? item.title.toUpperCase()
@@ -49,8 +49,8 @@ function Sysslor ({navigation}) {
       setSearch(text);
     } else {
       // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
-      setFilteredDataSource(masterDataSource);
+      // Updaterar FilteredDataSource med mainDataSource
+      setFilteredDataSource(mainDataSource);
       setSearch(text);
     }
   };
