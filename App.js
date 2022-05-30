@@ -1,17 +1,22 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard,ScrollView, Animated, PanResponder } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import JSONDATA from './MOCK_DATA.json';
 import TodoTask from './components/TodoTask';
 const Stack = createNativeStackNavigator();
 
 // Första Sidan
 function Sysslor ({navigation}) {
-  
+ 
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
+  
+
+
+  
+
   
 
   //lägg till task
@@ -33,11 +38,12 @@ function Sysslor ({navigation}) {
   }
 
   
+  
   return ( 
  
       <View style={styles.container}>
           <StatusBar style="auto" backgroundColor="#f7da59"  />
-      
+          
           <View style={styles.todoTaskContainer}>
             <Text style={styles.title}>
               Sysslor att göra
@@ -69,7 +75,21 @@ function Sysslor ({navigation}) {
           <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} //om det är en iphone, ge padding annars om android ge height från keyboard.       //rad 33: varje gång texten ändras, fångar vi texten och settar staten task till att "bli" den texten som skrivits in.
           style={styles.typeTaskSection}>
                                                                                                             
-            <TextInput  maxLength={35} style={styles.taskInput} placeholder={'Skriv en syssla'} value={task} onChangeText={text => setTask(text)}  />     
+            <TextInput  
+            maxLength={35} 
+            style={styles.taskInput} 
+            placeholder={'Skriv en syssla'} 
+            value={task} 
+            onChangeText={text => setTask(text)}  
+            />     
+
+
+            <TextInput 
+             style={styles.filterTask} 
+             placeholder="Filtrera" 
+            
+             />
+            
             
             <TouchableOpacity onPress={() =>  handleNewTask() }>
             <View style={styles.addBtn}>
@@ -168,7 +188,7 @@ const styles = StyleSheet.create({
     borderWidth:1.2,
     paddingHorizontal:30,
     paddingVertical:10,
-    width:250,
+    width:200,
     backgroundColor: '#9aff91',
     fontSize: 17,
   },
@@ -189,6 +209,18 @@ const styles = StyleSheet.create({
     borderRadius:5,
     alignItems: 'center'
     
+  }, 
+  filterTask:{
+    borderRadius:10,
+    borderColor:'#19fa05',
+    borderWidth:1.2,
+    paddingHorizontal:20,
+    paddingVertical:10,
+    width:150,
+    backgroundColor: '#fff',
+    fontSize: 17,
+    flex:3,
+    marginVertical: 10,
   }
 
 
