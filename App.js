@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard,ScrollView, Animated, PanResponder } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import JSONDATA from './MOCK_DATA.json';
+
 import TodoTask from './components/TodoTask';
 const Stack = createNativeStackNavigator();
 
