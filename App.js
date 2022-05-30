@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard,ScrollView, Animated, PanResponder } from 'react-native';
+import { StyleSheet, Text, View, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard,ScrollView, FlatList} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -13,9 +13,80 @@ function Sysslor ({navigation}) {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
   
-
+  const [search, setSearch] = useState('');
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
+  const [masterDataSource, setMasterDataSource] = useState([]);
 
   
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        setFilteredDataSource(responseJson);
+        setMasterDataSource(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+
+  const searchFilterFunction = (text) => {
+    // Check if searched text is not blank
+    if (text) {
+      // Inserted text is not blank
+      // Filter the masterDataSource
+      // Update FilteredDataSource
+      const newData = masterDataSource.filter(
+        function (item) {
+          const itemData = item.title
+            ? item.title.toUpperCase()
+            : ''.toUpperCase();
+          const textData = text.toUpperCase();
+          return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      setFilteredDataSource(masterDataSource);
+      setSearch(text);
+    }
+  };
+
+
+  const ItemView = ({item}) => {
+    return (
+      // Flat List Item
+      <Text
+        style={styles.itemStyle}
+        onPress={() => getItem(item)}>
+        {item.id}
+        {'.'}
+        {item.title.toUpperCase()}
+      </Text>
+    );
+  };
+
+
+  const ItemSeparatorView = () => {
+    return (
+      // Flat List Item Separator
+      <View
+        style={{
+          height: 0.5,
+          width: '100%',
+          backgroundColor: '#C8C8C8',
+        }}
+      />
+    );
+  };
+
+  const getItem = (item) => {
+    // Function for click on an item
+    alert('Id : ' + item.id + ' Title : ' + item.title);
+  };
 
   
 
@@ -41,9 +112,21 @@ function Sysslor ({navigation}) {
   
   return ( 
  
-      <View style={styles.container}>
+      <View style={styles.container1}>
           <StatusBar style="auto" backgroundColor="#f7da59"  />
-          
+          <TextInput
+          style={styles.textInputStyle}
+          onChangeText={(text) => searchFilterFunction(text)}
+          value={search}
+          underlineColorAndroid="transparent"
+          placeholder="Search Here"
+        />
+        <FlatList
+          data={filteredDataSource}
+          keyExtractor={(item, index) => index.toString()}
+          ItemSeparatorComponent={ItemSeparatorView}
+          renderItem={ItemView}
+        />
           <View style={styles.todoTaskContainer}>
             <Text style={styles.title}>
               Sysslor att göra
@@ -82,13 +165,6 @@ function Sysslor ({navigation}) {
             value={task} 
             onChangeText={text => setTask(text)}  
             />     
-
-
-            <TextInput 
-             style={styles.filterTask} 
-             placeholder="Filtrera" 
-            
-             />
             
             
             <TouchableOpacity onPress={() =>  handleNewTask() }>
@@ -160,7 +236,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
    
   },
+  container1: {
+    flex: 1,
+  },
   todoTaskContainer: {
+    maxHeight:450,
     paddingHorizontal:15,
     paddingTop:0,
   },
