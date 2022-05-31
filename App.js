@@ -31,7 +31,7 @@ function Sysslor ({navigation}) {
   }, []);
 
 
-  const searchFilterFunction = (text, []) => {
+  const searchFilterFunction = (text) => {
     // kollar om filter fältet inte är tom
     if (text) {
       // om den inte är tom
@@ -161,7 +161,7 @@ function Sysslor ({navigation}) {
             <TextInput  
             maxLength={35} 
             style={styles.taskInput} 
-            placeholder={'Skriv en syssla'} 
+            placeholder={'Skriv en sysslaa'} 
             value={task} 
             onChangeText={text => setTask(text)}  
             />     
