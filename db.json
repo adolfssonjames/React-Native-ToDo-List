@@ -1,1 +1,19 @@
+[
+    {
+        "id":1,
+        "todo":"Promenad med hunden"
+    },
+    {
+       "id":2,
+       "todo":"Handla mat"
+   },
+   {
+       "id":3,
+       "todo":"Lyssna podcast"
+   },
+   {
+       "id":4,
+       "todo":"Städa rummet"
+   }
+]
 
