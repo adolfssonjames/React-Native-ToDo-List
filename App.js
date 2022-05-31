@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard,ScrollView, FlatList} from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard,ScrollView, FlatList } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -31,7 +31,7 @@ function Sysslor ({navigation}) {
   }, []);
 
 
-  const searchFilterFunction = (text) => {
+  const searchFilterFunction = (text, []) => {
     // kollar om filter fältet inte är tom
     if (text) {
       // om den inte är tom
@@ -139,14 +139,14 @@ function Sysslor ({navigation}) {
                 return (
                   
                   <TouchableOpacity 
-                  onPress={() => navigation.navigate('Påbörjad', {data : <TodoTask  style={styles.todoItem} text={item} /> })}>
-                    <TouchableOpacity style={(styles.raderaKnapp)} title="X" key={index} onPress={() => deleteTask(index)}>
-                      <Text>Ta Bort</Text>
-                    </TouchableOpacity>
+                     onPress={() => navigation.navigate('Påbörjad', {data : <TodoTask  style={styles.todoItem} text={item} /> })}>
+                     <TouchableOpacity style={(styles.raderaKnapp)} title="X" key={index} onPress={() => deleteTask(index)}>
+                       <Text>Ta Bort</Text>
+                     </TouchableOpacity>
+
+                     <TodoTask  style={styles.todoItem} text={item} /> 
                   
-                    <TodoTask  style={styles.todoItem} text={item} /> 
-                  
-                </TouchableOpacity>
+                   </TouchableOpacity>
                   )
                 })
               }
