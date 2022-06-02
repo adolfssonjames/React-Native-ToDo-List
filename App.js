@@ -85,7 +85,7 @@ function PunList ({navigation}) {
     return (
       <View >
         <Text style={styles.chosenPunStyle}>
-        { ' Chosen PUN | ' + item.id + '. ' + item.title}
+        { ' Chosen Pun | ' + item.id + '. ' + item.title}
         </Text>
       </View>
   
@@ -174,8 +174,6 @@ export default function App() {
   )  
   }
 
-              
-      
           
 /* CSS */
 const styles = StyleSheet.create({
@@ -188,6 +186,7 @@ const styles = StyleSheet.create({
     paddingLeft:40,
     paddingRight:40,
   },
+
   title: {
   fontSize:25, 
   fontWeight:"bold",
@@ -200,10 +199,6 @@ const styles = StyleSheet.create({
     fontSize:30,
     backgroundColor:"#a5faa5",
     color:"#000300",
-    
-    
-    
-    
   },
 
   punListStyle: {
@@ -214,7 +209,7 @@ const styles = StyleSheet.create({
   chosenPunStyle: {
     color:"#45ad18",
     fontSize:22,
+    fontWeight:"bold",
   },
-
 
 });
