@@ -149,7 +149,7 @@ function Learned({navigation, route}) {
 //Fjärde sidan
 function Mastered({navigation, route}) {
   
-  const onRemove = id => e => {
+  const onRemove = id => title => {
     setMainDataSource(title.filter(title => title.id !== id));
   };
   return (
