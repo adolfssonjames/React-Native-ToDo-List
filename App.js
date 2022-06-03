@@ -55,7 +55,7 @@ function PunList ({navigation}) {
   };
 
   // FlatList Item klick navigering funktion
-  const ItemView = ({item,}) => {
+  const ItemView = ({item}) => {
     
     return (
       <View  > 
@@ -75,11 +75,7 @@ function PunList ({navigation}) {
     return (
       <View 
       
-        style={{
-          height: 1.5,
-          width: '100%',
-          backgroundColor: '#f5e23d',
-        }}
+        style={styles.itemSeparator}
       />
     );
   };
@@ -215,5 +211,11 @@ const styles = StyleSheet.create({
     fontSize:22,
     fontWeight:"bold",
   },
+
+  itemSeparator: {
+      height: 1.5,
+      width: '100%',
+      backgroundColor: '#f5e23d',
+  }
 
 });
