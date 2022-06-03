@@ -29,7 +29,8 @@ function PunList ({navigation}) {
 
   const searchFilterFunction = (text) => {
     
-    if (text) {
+    if (text.length < 25) {
+      
       // om den inte är tom
       // Filtrera mainDataSource och uppdatera filteredDataSource
       const newData = mainDataSource.filter(
@@ -43,10 +44,13 @@ function PunList ({navigation}) {
       setFilteredDataSource(newData);
       setSearch(text);
     }  
+    
     else {
       // Updaterar FilteredDataSource med mainDataSource
       setFilteredDataSource(mainDataSource);
       setSearch(text);
+      Alert.alert('Whopsy!', 'To many characters. Max 25 Chars allowed!')
+      setSearch(null);
     }
   };
 
